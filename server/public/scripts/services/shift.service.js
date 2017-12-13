@@ -58,33 +58,51 @@ myApp.service('ShiftService', function ($http, $location, $mdDialog) {
     }).catch(function (err) {
       console.log('Error');
     });
-  } //end addNewShift function and route
+  }; //end addNewShift function and route
 
   self.getShifts = function () {
     return $http.get('/shifts').then(function (response) {
       console.log('response', response.data)
       self.shiftsToDisplay.data = response.data;
       return response
-    })
-  }
+    });
+  };
 
-  self.getPayPeriodDates = function() {
-    return $http.get('/shifts/payperiod/getdates').then(function(response){
-      console.log('response', response.data)
-      // self.payPeriodStartAndEnd.data = response.data;
-      return response.data;
-    })
-    .catch(function(err){
-      console.log('error')
-    })
-  }
+  self.sendTextMessage = function () {
 
-  self.updatePayPeriodDates = function() {
-    var rowId = 1;
-    return $http.put('/shifts/payperiod/updatedates/' + rowId).then(function(response){
-      console.log('response', response.data)
-      return response.data;
-    })
-  }
+    
+    //what is required for Plivo to deliver message;
+    textParams ={
+      src:'',
+      dst:'',
+      text:'',
 
+    };
+    $http.post('/message/text').then(function (response) {
+
+      console.log(response);
+
+    }).catch(function (response) {
+      console.log('send textMessage did not work:', response);
+    });
+  };//end of sendTextMessage
+
+
+  self.sendEmailMessage = function () {
+
+    $http.post('/message/email').then(function (response) {
+      // neccessary params for email transport object;
+      emailParams = {
+        to: '', // list of receivers
+        subject: '', // Subject line
+        text: '', // plain text body;
+        html: '', // html body
+
+      };
+      console.log(response);
+
+    }).catch(function (response) {
+      console.log('send emailMessage did not work: ', response);
+    });
+  };//end of sendEmailMessage
 });
