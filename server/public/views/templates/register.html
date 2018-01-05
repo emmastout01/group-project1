@@ -5,10 +5,16 @@
       <md-input-container>
         <label for="username">Name</label>
         <input ng-required="true" type="text" ng-model="lc.user.name" />
+        <div ng-messages="lc.user.name.$error" ng-show="lc.user.name.$dirty">
+          <div ng-message="required">Please enter your name.</div>
+        </div>
       </md-input-container>
       <md-input-container>
         <label for="username">Email</label>
-        <input ng-required="true" type="text" ng-model="lc.user.username" />
+        <input ng-required="true" type="email" ng-model="lc.user.username" />
+        <div ng-messages="lc.user.username.$error">
+          <div ng-message="required">Please enter a valid email address.</div>
+        </div>
       </md-input-container>
       <md-input-container>
         <label for="password">Password</label>
@@ -16,7 +22,13 @@
       </md-input-container>
       <md-input-container>
         <label for="phone">Mobile Phone Number</label>
-        <input ng-model="lc.user.phone" />
+        <input 
+          ng-model="lc.user.phone" 
+          ng-minlength="10"
+          ng-maxlength="10"/>
+          <div ng-messages="lc.user.phone.$error">
+            <div  ng-message="minlength">Please enter your number 10 digit number without symbols or spaces.</div>
+          </div>
       </md-input-container>
       <md-button class="md-raised md-primary" type="submit" name="submit" value="Register">
         Register

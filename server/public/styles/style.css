@@ -9,6 +9,7 @@ body, html {
 #welcome {
   color: #8774AA;
   margin-left: 10px;
+  font-size: 20px;
 }
 
 .instructions .container h1 {
@@ -807,4 +808,27 @@ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
 
 .pickupDatePicker {
   padding: 0;
+}
+
+.mobileUserMessages {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mobileUserMessagesHeader {
+  font-size: 20px;
+}
+
+.mobileMessageDate {
+  width: 20%;
+  font-weight: bold;
+}
+
+.mobileMessageHeadline {
+  font-weight: bold;
+}
+
+.mobileMessage {
+  width: 100%;
+  margin-bottom: 5px;
 }

@@ -1,15 +1,15 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-    <h1 id="welcome">Welcome, {{uc.userObject.name}}!</h1>
+    <div layout="row" id="welcome">Welcome, {{uc.userObject.name}}!</div>
 
-    <div class="addMessageButton">
+    <div hide-xs hide-sm class="addMessageButton">
         <!-- SUPERVISOR BUTTON TO ADD MESSAGES -->
         <md-button ng-show="uc.userObject.role === 'Supervisor'" class="md-raised md-primary" ng-click="uc.createNotification()">Create Message</md-button>
     </div>
     <!-- ********** USER MESSAGES ********* -->
     <!-- Standard View -->
-    <div class="userMessages">
+    <div hide-xs hide-sm show-md show-lg show-xl class="userMessages">
         <div class="userMessagesHeader" layout="row" layout-align="center center">On-call Staff Messages</div>
         <div class="messagesHeader" layout="row" layout-align="start center">
             <div class="messageDateHeader">Date</div>
@@ -37,11 +37,22 @@
     </div>
 
     <!-- Mobile View -->
+    <div show-xs show-sm hide-md hide-lg hide-xl class="mobileUserMessages">
+        <div class="mobileUserMessagesHeader" layout="row" layout-align="center center">On-call Staff Messages</div>
+        <div ng-repeat="notification in uc.notifications.data track by $index">
+            <div layout=row>
+                <span class="mobileMessageDate">{{notification.date | amDateFormat: 'MM/DD/YY' }}</span>
+                <span class="mobileMessageHeadline">{{notification.headline}}</span>
+            </div>
+            <div class="mobileMessage" layout="row">
+                <span>{{notification.message}}</span>
+            </div>
+        </div>
+    </div>
 
-    
     <!-- ********** END USER MESSAGES ********* -->
     <!-- ********** USER PROFILE EDIT ********* -->
-    <div class="userInfo">
+    <div hide-xs hide-sm show-md show-lg show-xl class="userInfo">
         <div class="userMyInformation" layout="row" layout-align="center center">My Information</div>
         <div class="userInfoHeader" layout="row" layout-align="start center" hide-xs hide-sm show-md show-lg show-xl>
             <div class="userInfoNameHeader">Name</div>
@@ -66,7 +77,8 @@
                 <input aria-label="phone" placeholder="{{uc.userObject.phone}}" ng-model="uc.editProfile.phone">
             </div>
             <div class="userInfoEdit">
-                <md-button class="md-icon-button md-primary" aria-label="edit" ng-click="uc.joshEdit(uc.editProfile.userName, uc.editProfile.phone)" ng-hide="uc.showName">
+                <md-button class="md-icon-button md-primary" aria-label="edit" ng-click="uc.joshEdit(uc.editProfile.userName, uc.editProfile.phone)"
+                    ng-hide="uc.showName">
                     <md-icon md-svg-src="../images/check.svg"></md-icon>
                 </md-button>
                 <md-button class="md-icon-button md-primary" aria-label="save" ng-click="uc.toggleEdit()" ng-show="uc.showName">
@@ -78,49 +90,25 @@
 
     <!-- ********** MOBILE USER PROFILE EDIT ********* -->
     <div class="mobileUserEdit" show-xs show-sm hide-md hide-lg hide-xl>
-        <span>My Information</span>
-        <div show-xs show-sm hide-md hide-lg hide-xl>
-            <div layout="row">
-                <div class="editUserInput" ng-show="uc.showName">
-                    {{uc.userObject.userName}}
-                </div>
-                <div class="editUserInput" ng-hide="uc.showName">
-                    <input placeholder="{{uc.userObject.userName}}" ng-model="uc.editUser.userName">
-                </div>
-                <div class="editUserInput" ng-show="uc.showName">
-                    {{uc.userObject.phone}}
-                </div>
-                <div class="editUserInput" ng-hide="uc.showName">
-                    <input placeholder="{{uc.userObject.phone}}" ng-model="uc.editUser.phone">
-                </div>
-
-                <md-button aria-label="edit" class="md-icon-button md-primary" ng-click="uc.toggleEdit()" ng-hide="uc.showName">
-                    <md-icon md-svg-src="../images/check.svg"></md-icon>
-                </md-button>
-                <md-button aria-label="save" class="md-icon-button md-primary" ng-click="uc.toggleEdit()" ng-show="uc.showName">
-                    <md-icon md-svg-src="../images/ic_mode_edit_black_18px.svg"></md-icon>
-                </md-button>
-            </div>
-        </div>
-
-
-        <!-- <div>
-        <md-button>
+        <span layout="row" layout-align="center center" class="mobileUserMessagesHeader">My Information</span>
+        <div layout="column" layout-align"center center">    
+        <div ng-show="uc.showName">{{uc.userObject.userName}}</div>
+            <md-input-container ng-hide="uc.showName">
+                <label>Email</label>
+                <input ng-model="uc.userObject.userName">
+            </md-input-container>
+            <div ng-show="uc.showName">{{uc.userObject.phone}}</div>
+            <md-input-container ng-hide="uc.showName">
+                <label>Email</label>
+                <input ng-model="uc.userObject.phone">
+            </md-input-container>
+        <md-button aria-label="edit" class="md-icon-button md-primary" ng-click="uc.toggleEdit()" ng-hide="uc.showName">
+            <md-icon md-svg-src="../images/check.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="save" class="md-icon-button md-primary" ng-click="uc.toggleEdit()" ng-show="uc.showName">
             <md-icon md-svg-src="../images/ic_mode_edit_black_18px.svg"></md-icon>
         </md-button>
     </div>
-    <div>
-        <md-button ng-click="uc.joshEdit()">
-            <md-icon md-svg-src="../images/check.svg"></md-icon>
-        </md-button>
     </div>
-
-
-    <md-button ng-click="uc.toggleEdit()" ng-hide="uc.showName">
-        <md-icon md-svg-src="../images/check.svg"></md-icon>
-    </md-button>
-    <md-button ng-click="uc.toggleEdit()" ng-show="uc.showName">
-        <md-icon md-svg-src="../images/ic_mode_edit_black_18px.svg"></md-icon>
-    </md-button> -->
-
+</div>
 </div>
