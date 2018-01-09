@@ -53,9 +53,9 @@ router.post('/', function (req, res) {
                             done();
                             console.log('hey', result.rows[0].shift_status)
                             if (result.rows[0].shift_status === 'Filled') {
-                            var shiftId = result.rows[0].shift_id;
-                            var filledId = result.rows[0].filled;
-                            var confirmedBy = result.rows[0].created_by
+                                var shiftId = result.rows[0].shift_id;
+                                var filledId = result.rows[0].filled;
+                                var confirmedBy = result.rows[0].created_by
                                 filledOnAdd(shiftId, filledId, confirmedBy)
                             }
                             if (errorMakingQuery) {
