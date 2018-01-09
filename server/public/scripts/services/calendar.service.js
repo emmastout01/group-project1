@@ -27,6 +27,7 @@ myApp.service('calendarService', function ($http, $location, $mdDialog) {
             self.payPeriodStart = moment(response.data[0].start);
             self.payPeriodEnd = moment(response.data[0].end);
             self.checkPayPeriodCurrent(self.payPeriodStart, self.payPeriodEnd)
+            console.log('pay period dates in the service****', self.payPeriodStart, self.payPeriodEnd)
         })
             .catch(function (err) {
                 console.log('error')

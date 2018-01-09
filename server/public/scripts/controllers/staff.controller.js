@@ -16,17 +16,24 @@ myApp.controller('StaffController', function (UserService, ShiftService, Availab
   vm.currentMonth = {
     dates: []
   };
-  vm.currentSchedule = calendarService.currentSchedule.dates;
-  vm.payPeriodStart = '';
-  vm.payPeriodEnd = '';
+  vm.currentSchedule = calendarService.currentSchedule;
+  vm.payPeriodStart = calendarService.payPeriodStart;
+  vm.payPeriodEnd = calendarService.payPeriodEnd;
 
   vm.getPayPeriodDates = function() {
-    calendarService.getPayPeriodDates();
-    console.log('vm.currentSchedule', vm.currentSchedule);
-    // vm.payPeriodStart = vm.currentSchedule[0];
-    // vm.payPeriodEnd = vm.currentSchedule[13];
+    calendarService.getPayPeriodDates().then(function(response){
+      console.log('vm.currentSchedule', vm.currentSchedule.dates);
+      
+      vm.payPeriodStart = vm.currentSchedule.dates[0].moment._d;
+      vm.payPeriodEnd = vm.currentSchedule.dates[13].moment._d;
+      console.log('pay period dates************', vm.payPeriodStart, vm.payPeriodEnd)
+    })
+    // vm.payPeriodStart = vm.currentSchedule.dates[0].moment._d;
+    // vm.payPeriodEnd = vm.currentSchedule.dates[13].moment._d;
+    // console.log('start and end date of pay period', vm.payPeriodStart, vm.payPeriodEnd)
   }
 
+  // console.log('pay period dates************', vm.payPeriodStart, vm.payPeriodEnd)
   vm.getPayPeriodDates();
   //puts each day of the month in array
   vm.monthDays = {
@@ -129,7 +136,8 @@ myApp.controller('StaffController', function (UserService, ShiftService, Availab
         monthText: moment().month(currentMonth),
         year: currentYear,
         shifts: [],
-        usershifts: []
+        usershifts: [],
+        payperiod: '',
       }
       vm.currentMonth.dates.push(eachDay);
     }
@@ -139,7 +147,17 @@ myApp.controller('StaffController', function (UserService, ShiftService, Availab
     vm.checkFirstDayOfMonth(vm.dayInWeek, firstDayofMonth, currentYear);
     vm.displayMonth = moment().month(currentMonth).format('MMMM');
     vm.displayYear = moment(vm.currentMonth.dates[0]);
+    // vm.payPeriodColor(vm.payPeriodStart, vm.payPeriodEnd, vm.currentMonth.dates)
   };
+
+  vm.payPeriodColor = function(payPeriodStart, payPeriodEnd, currentMonth) {
+    for (var i = 0; i < currentMonth.length; i ++) {
+      if (currentMonth[i] >= payPeriodStart && currentMonth[i] <= payPeriodEnd) {
+        vm.currentMonth[i].eachDay.payperiod = 'active';
+      }
+    }
+    console.log('pay period color function')
+  }
 
   //checks for the first day of the month and adds objects to push calendar start to align with day header
   vm.checkFirstDayOfMonth = function (dayInWeek, currentMonth, currentYear) {
