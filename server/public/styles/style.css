@@ -832,3 +832,8 @@ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
   margin-left: 10px;
 }
 
+md-dialog {
+  /* min-height: 50%; */
+  min-width: 50%;
+}
+
