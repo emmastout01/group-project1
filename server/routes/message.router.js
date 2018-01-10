@@ -207,8 +207,5 @@ router.post('/text', function (req, res) {
     });
     res.send(201);
 });
-getUsers().then(function (result) {
 
-    console.log('this logged', result.join(''));
-});
 module.exports = router;

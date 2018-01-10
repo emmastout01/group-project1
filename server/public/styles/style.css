@@ -141,31 +141,6 @@ li a:hover {
   border-bottom: solid 2px #ffffff;
 }
 
-/* #approveUsersBox {
-  background-color: #E7E7E7;
-  width: 45%;
-  margin: 5px;
-  padding: 5px;
-} */
-
-/* #editUsersTable, #confirmUsersTable {
-  width: 70%; 
-  padding: 5px;
-  border: 2px solid lightslategray;
-  align-self: center;
-  margin: 0 auto;
-} */
-
-/* #editUsersTable td, #confirmUsersTable td {
-  width: 25%;
-  border: 0px solid black;
-}
-
-#editUsersTable #userName, #confirmUsersTable #userName {
-  width: 50%;
-  text-align: center;
-} */
-
 .NoUsersMessage {
   width: 100%;
   text-align: center;
@@ -176,15 +151,6 @@ li a:hover {
   height: 25px;
   width: auto;
 }
-
-/* #editButton, #deleteButton, #closeButton {
-  min-width: 30px;
-  padding: 3px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-
-} */
 
 .calendarSpace {
   width: 80%;
@@ -371,10 +337,7 @@ th,
 td {
   padding: 15px;
 }
-/* #shiftTime {
-  width: 10px;
-  height: 10px;
-} */
+
 
 md-icon.Evening path.circle {
   fill: #A62020;
@@ -431,11 +394,6 @@ md-icon.Night path.circle {
   width: 125px;
   padding-left: 20px;
 }
-
-/* #fillShiftButton {
-  background-color: #3b5998;
-  color: white;
-} */
 
 #showFilledBy {
   height: 25px;
