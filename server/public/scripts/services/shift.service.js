@@ -58,16 +58,6 @@ myApp.service('ShiftService', function ($http, $location, $mdDialog) {
     })
   }
 
-  // self.getShifts = function (firstOfMonth, lastOfMonth) {
-  //   console.log('get shifts is running');
-  //   console.log('first and last of month - service', firstOfMonth, lastOfMonth)
-  //   return $http.get('/shifts').then(function (response) {
-  //     console.log('response', response.data)
-  //     self.shiftsToDisplay.data = response.data;
-  //     return response;
-  //   });
-  // };
-
 
   //addNewShift function and route
   self.addNewShift = function (staffId, selection, shiftDate, shiftStatus, urgent, shift, role, comments, notify, nurse, adl, mhw, floor) {
@@ -96,48 +86,16 @@ myApp.service('ShiftService', function ($http, $location, $mdDialog) {
         console.log('send urgent textMessage did not work:', response);
       });
     }
-    // if (self.newShift.shift_status === 'Filled') {
-    //   console.log('here')
-    //   $http.post('/shifts/confirmation', self.newShift).then(function (response) {
-
-    //     console.log(response);
-
-    //   }).catch(function (response) {
-    //     console.log('confirmed filled did not work:', response);
-    //   });
-    // }
+ 
     return $http.post('/shifts/', self.newShift).then(function (response) {
       console.log('the response', response)
       self.newShift = {}
       return response;
-      //     if (self.newShift.shift_status === 'Filled') {
-      // console.log('here')
-      // $http.post('/shifts/confirmation', self.newShift).then(function (response) {
 
-      //   console.log(response);
-
-      // }).catch(function (response) {
-      //   console.log('confirmed filled did not work:', response);
-      // });
-    // }
     }).catch(function (err) {
       console.log('Error');
     });
   }; //end addNewShift function and route
-
-  // self.getShifts = function (firstOfMonth, lastOfMonth) {
-  //   console.log('get shifts is running');
-  //   console.log('first of month', firstOfMonth);
-  //   console.log('last Of Month', lastOfMonth);
-  //   self.shiftsToDisplay.data = [];
-  //   // console.log('shifts to display service', self.shiftsToDisplay.data)
-  //   return $http.get('/shifts').then(function (response) {
-  //     // console.log('response', response.data)
-  //     self.shiftsToDisplay.data = response.data;
-  //     // console.log('shifts to display in service, after query', self.shiftsToDisplay.data)
-  //     return response;
-  //   });
-  // };
 
   self.getShifts = function (firstDayofShifts, lastDayofShifts) {
     console.log('get shifts is running');
