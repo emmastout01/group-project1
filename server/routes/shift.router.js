@@ -345,7 +345,7 @@ router.post('/confirm', function (req, res) {
                     'VALUES ($1, $2, $3, $4);';
                 db.query(queryText, [staffMember.shift_id, staffMember.id, staffMember.bid_id, req.user.id],
                     function (errorMakingQuery, result) {
-                        done();
+                    
                         if (errorMakingQuery) {
                             console.log('Error making query', errorMakingQuery);
                             res.sendStatus(500);
